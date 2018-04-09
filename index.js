@@ -11,6 +11,8 @@ const url = require('url');
 const StringDecoder = require('string_decoder').StringDecoder;
 const config = require('./config');
 const fs = require('fs');
+const handlers = require('./lib/handlers');
+// const _data = require('./lib/data');
 
 // instantiate the HTTP server
 let httpServer = http.createServer((req, res)=> {
@@ -98,25 +100,6 @@ let unifiedServer = (req, res) => {
         });
     });
 }
-
-// define the handlers
-const handlers = {};
-
-// ping handler
-handlers.ping = (data, callback) => {
-    callback(200);
-}
-
-// sample handler 
-handlers.sample = (data, callback) => {
-    // callback http status code and a payload object -- api built to work with json exclusively
-    callback(406, {'name' : 'sample handler'});
-};
-
-// 404 Not Found handler
-handlers.notFound = (data, callback) => {
-    callback(404);
-};
 
 // Define a request router
 const router = {
