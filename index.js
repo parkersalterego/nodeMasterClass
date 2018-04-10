@@ -12,6 +12,7 @@ const StringDecoder = require('string_decoder').StringDecoder;
 const config = require('./config');
 const fs = require('fs');
 const handlers = require('./lib/handlers');
+const helpers = require('./lib/helpers');
 // const _data = require('./lib/data');
 
 // instantiate the HTTP server
@@ -68,6 +69,7 @@ let unifiedServer = (req, res) => {
 
     req.on('end', () => {
         buffer += decoder.end();
+        console.log(buffer);
 
         // determine which handler req should goto and if not found send to notFound handler
         let chosenHandler = typeof(router[trimmedPath]) !== 'undefined' ? router[trimmedPath] : handlers.notFound;
@@ -78,7 +80,7 @@ let unifiedServer = (req, res) => {
             'queryStringObject': queryStringObject,
             'method': method,
             'headers': headers,
-            'payload': buffer
+            'payload': helpers.parseJsonToObject(buffer)
         };
 
         // route the request to the handler specified in the router
@@ -104,5 +106,6 @@ let unifiedServer = (req, res) => {
 // Define a request router
 const router = {
     'sample' : handlers.sample,
-    'ping' : handlers.ping
+    'ping' : handlers.ping,
+    'users' : handlers.users
 };
