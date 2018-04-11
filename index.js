@@ -11,9 +11,12 @@ const url = require('url');
 const StringDecoder = require('string_decoder').StringDecoder;
 const config = require('./config');
 const fs = require('fs');
-const handlers = require('./lib/handlers');
 const helpers = require('./lib/helpers');
 // const _data = require('./lib/data');
+
+// HANDLERS
+const handlers = require('./lib/handlers/handlers');
+const userHandler = require('./lib/handlers/usersHandler.js');
 
 // instantiate the HTTP server
 let httpServer = http.createServer((req, res)=> {
@@ -108,5 +111,6 @@ let unifiedServer = (req, res) => {
 const router = {
     'sample' : handlers.sample,
     'ping' : handlers.ping,
-    'users' : handlers.users
+    'users' : userHandler,
+    'tokens' : handlers.tokens
 };
