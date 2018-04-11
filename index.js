@@ -15,8 +15,7 @@ const helpers = require('./lib/helpers');
 // const _data = require('./lib/data');
 
 // HANDLERS
-const handlers = require('./lib/handlers/handlers');
-const userHandler = require('./lib/handlers/usersHandler.js');
+const handlers = require('./lib/handlers');
 
 // instantiate the HTTP server
 let httpServer = http.createServer((req, res)=> {
@@ -111,6 +110,6 @@ let unifiedServer = (req, res) => {
 const router = {
     'sample' : handlers.sample,
     'ping' : handlers.ping,
-    'users' : userHandler,
+    'users' : handlers.users,
     'tokens' : handlers.tokens
 };
