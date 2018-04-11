@@ -82,6 +82,7 @@ let unifiedServer = (req, res) => {
             'headers': headers,
             'payload': helpers.parseJsonToObject(buffer)
         };
+        console.log(data.payload);
 
         // route the request to the handler specified in the router
         chosenHandler(data, (statusCode, payload) => {
@@ -100,7 +101,7 @@ let unifiedServer = (req, res) => {
             // log url path asked for in req
             console.log('Returning this response ', statusCode, payload);
         });
-    });
+    }); 
 }
 
 // Define a request router
