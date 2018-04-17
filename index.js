@@ -4,7 +4,7 @@
 
 // Dependencies
 let server = require('./lib/server');
-let workers = require('lib/workers');
+let workers = require('./lib/workers');
 
 // application
 
@@ -12,6 +12,9 @@ let app = {};
 
 // initialization function
 app.init = () => {
+// start the server 
+server.init();
+
 // start the workers
 workers.init();
 };
@@ -20,4 +23,4 @@ workers.init();
 app.init();
 
 // export the app 
-modul.exports = app;
+module.exports = app;
